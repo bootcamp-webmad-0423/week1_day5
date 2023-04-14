@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        class Person {
+
+            constructor(nameValue, lastNameValue, ageValue, hobbiesValue) {
+                this.firstName = nameValue
+                this.lastName = lastNameValue
+                this.age = ageValue
+                this.hobbies = hobbiesValue
+            }
+
+            learnNewHobby(newHobby) {
+                this.hobbies.push(newHobby)
+            }
+
+            grow(extraYears = 1) {
+                this.age += extraYears
+            }
+        }
+
+        // Instances
+        const person1 = new Person('German', 'Álvarez', 36, ['beer', 'sky'])
+        const person2 = new Person('Jaime', 'Boukhrij', 33, ['gym', 'gadgets'])
+
+        console.log('Esto es una instancia ->', person1)
+
+        // Instance properties access
+        console.log(`Me llamo ${person1.firstName} y tengo ${person1['age']} años`)
+        console.log('Mis hobbies son:', person2.hobbies)
+
+        // Instance custom methods
+        person1.learnNewHobby('chess')
+        console.log('Y ahora mis hobbies son:', person1.hobbies)
+
+        person1.grow()
+        person1.grow(5)
+        console.log('Mi edad ahora es', person1.age)
+
+    </script>
+</body>
+
+</html>

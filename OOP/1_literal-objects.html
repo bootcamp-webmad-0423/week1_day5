@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        const person = {
+            firstName: 'German',
+            lastName: 'Álvarez',
+            birth: new Date(1986, 4, 23),
+            address: {
+                street: 'García Luna',
+                neighbourhood: 'Prospe',
+                postalCode: 28002
+            },
+            hobbies: ['sky', 'coding', 'beer', 'rave'],
+            age: 35,
+            height: 1.7,
+            weight: 80,
+            subscriptions: [
+                {
+                    name: 'Netflix',
+                    cost: 14.99
+                },
+                {
+                    name: 'Glovo Prime',
+                    cost: 9.99
+                }
+            ],
+            learnNewHobby(newHobby) {
+                this.hobbies.push(newHobby)
+            },
+            grow(extraYears = 1) {
+                this.age += extraYears
+            },
+            suscribe(serviceName, serviceCost) {
+                const service = {
+                    name: serviceName,
+                    cost: serviceCost
+                }
+                this.subscriptions.push(service)
+            },
+            getTotalSubsCost() {
+                let costSum = 0
+                this.subscriptions.forEach(function (eachSubscription) {
+                    costSum += eachSubscription.cost
+                })
+                return costSum
+            }
+        }
+
+
+
+
+        // Object properties access
+        console.log(`Me llamo ${person.name} y tengo ${person['age']} años`)
+        console.log('Mis hobbies son:', person.hobbies)
+
+        // Custom methods
+        person.learnNewHobby('chess')
+        console.log('Y ahora mis hobbies son:', person.hobbies)
+
+        person.grow()
+        person.grow(5)
+        console.log('Mi edad ahora es', person.age)
+
+        person.suscribe('Car2go', 19.99)
+        console.log('Y ahora mis suscripciones son:', person.subscriptions)
+
+        const total = person.getTotalSubsCost()
+        console.log('Me estoy dejando', total, '€ al mes en suscripciones D:')
+
+
+    </script>
+</body>
+
+</html>

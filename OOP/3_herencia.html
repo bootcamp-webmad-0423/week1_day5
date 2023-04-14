@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        class User {
+
+            constructor(nameValue, lastNameValue, emailValue) {
+                this.name = nameValue
+                this.lastName = lastNameValue
+                this.email = emailValue
+                this.active = true
+            }
+
+            updateEmail(newEmail) {
+                this.email = newEmail
+            }
+        }
+
+
+        // Instance 1
+        const user1 = new User('German', 'Alvarez', 'ger@msn.es')
+
+        console.log('El correo de', user1.name, 'es', user1.email)
+        user1.updateEmail('popinoislove@msn.es')
+        console.log('El correo de', user1.name, 'ahora es', user1.email)
+
+
+
+
+        console.log('-----')
+
+
+
+
+        class Player extends User {
+
+            constructor(nameValue, lastNameValue, emailValue, nickValue) {
+                super(nameValue, lastNameValue, emailValue)   // remite los argumentos al constructor padre
+                this.nick = nickValue
+                this.lives = 10
+                this.tokens = 100
+            }
+
+            spendTokens(charge) {
+                if (this.tokens >= charge) {
+                    this.tokens -= charge
+                } else {
+                    console.error('No puedes gastar', charge, 'tokens ya que solo te quedan', this.tokens)
+                }
+            }
+
+            buyLives(extraLives) {
+                const liveCost = 20
+                const totalCost = liveCost * extraLives
+                if (totalCost <= this.tokens) {
+                    this.lives += extraLives
+                    this.tokens -= totalCost
+                } else {
+                    console.error('No puedes comprar', extraLives, 'vidas por ', totalCost, ' tokens ya que solo te quedan', this.tokens)
+                }
+            }
+        }
+
+
+
+        const player1 = new Player('Yasmina', 'Moreno', 'yas@msn.es', 'RuBiS3La_ò_Ó')
+        console.log('La jugadora', player1.nick, 'en realidad se llama', player1.name, 'y su correo es', player1.email)
+
+        player1.updateEmail('ahoraeste@msn.es')
+        console.log('El correo de', player1.name, 'ahora es', player1.email)
+
+        player1.spendTokens(5)
+        console.log('Ahora el jugador tiene', player1.tokens, 'tokens')
+        player1.spendTokens(500)
+        console.log('Ahora el jugador tiene', player1.tokens, 'tokens')
+
+        player1.buyLives(1)
+        console.log('Ahora el jugador tiene', player1.lives, 'vidas')
+        player1.buyLives(56)
+        console.log('Ahora el jugador tiene', player1.lives, 'vidas')
+
+
+
+        console.log('-----')
+
+
+        class Witch extends Player {
+            constructor(nameValue, lastName, emailValue, nickValue, spellValue) {
+                super(nameValue, lastName, emailValue, nickValue)
+                this.spell = spellValue
+            }
+
+            makeSpell() {
+                console.warn('La bruja', this.nick, '(que en realidad se llama ', this.name, ') te ha lanzado un hechizo de tipo', this.spell, '¡oh, no!')
+            }
+        }
+
+
+        const witch1 = new Witch('Charini', 'Suarez', 'chari@msn.es', 'Piruja68', 'Abra Cadabra')
+        witch1.makeSpell()
+
+
+        console.log('-----')
+
+
+
+        class Gnome extends Player {
+            constructor(nameValue, lastName, emailValue, nickValue, attackNameValue) {
+                super(nameValue, lastName, emailValue, nickValue)
+                this.attackName = attackNameValue
+            }
+
+            attack() {
+                console.warn('El gnomo', this.nick, 'te atacó con', this.attackName, '... ¡qué guarro!')
+            }
+        }
+
+        const gnome1 = new Gnome('Sergi', 'Alv', 'sergi@msn.es', 'mÒ_óReNiKoH_86', 'escupitajos en la cara')
+        gnome1.attack()
+
+
+
+
+    </script>
+</body>
+
+</html>
